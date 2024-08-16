@@ -1,0 +1,78 @@
+REGISTER SUBJECTS:  http://127.0.0.1:8080/admin/register/subjects
+
+{
+    "subid":"PEC9000",
+    "name":"CYBER",
+    "department":"CSE",
+    "semester":7
+}
+
+{
+    "subid":"PEC1234",
+    "name":"CD",
+    "department":"CSE",
+    "semester":7
+}
+
+
+REGISTER TEACHER: http://127.0.0.1:8080/admin/register/teachers
+
+{
+    "tid":"T011",
+    "name":"DC",
+    "email":"dc@gmail.com",
+    "phone_number":1234567890,
+    "password":"hello",
+    "subjects":[
+        {
+            "subid":"PEC1234"
+        },
+        {
+            "subid":"PEC9000"
+        }
+    ]
+
+}
+
+REGISTER STUDENTS:  http://127.0.0.1:8080/admin/register/students
+
+{
+    "sid":"22011",
+    "name":"AGNIBHA",
+    "department":"CSE",
+    "year":4,
+    "semester":7,
+    "email":"hello@gmail.com",
+    "phone_number":9874697612,
+    "birthdate":"1990-11-11",
+    "password":"hello",
+     "subjects":[
+        {
+    "subid":"PEC1234"
+    },
+    {
+    "subid":"PEC9000"
+    }
+
+    ]
+}
+
+
+REGISTER MATERIALS:  http://127.0.0.1:8080/teachers/PEC9000/materials
+
+{
+    "material_name":"hello",
+    "subject_id":"PEC9000"
+}
+
+
+FETCH SUBJECTS OF A PARTICULAR STUDENT: http://127.0.0.1:8080/students/22011/subjects
+
+
+FETCH SUBJECTS OF A PARTICULAR TEACHER: http://127.0.0.1:8080/teachers/T011/subjects  
+
+
+
+
+
+
