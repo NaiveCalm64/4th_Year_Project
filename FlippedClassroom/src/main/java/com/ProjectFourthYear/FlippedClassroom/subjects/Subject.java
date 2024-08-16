@@ -1,8 +1,26 @@
 package com.ProjectFourthYear.FlippedClassroom.subjects;
 
+import java.util.List;
+import java.util.ArrayList;
+
+import com.ProjectFourthYear.FlippedClassroom.student.Student;
+import com.ProjectFourthYear.FlippedClassroom.teacher.Material;
+import com.ProjectFourthYear.FlippedClassroom.teacher.Teacher;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 public class Subject {
 	
@@ -10,54 +28,21 @@ public class Subject {
 	private String subid;
 	private String name;
 	private String department;
-	private int semister;
+	private int semester;
+	// private String tid;
+	@ManyToOne
+	@JoinColumn(name="tid")
+	private Teacher teacher;
+
+	@ManyToOne
+	@JoinColumn(name="sid")
+	private Student student;
+
+	@OneToMany
+	@JoinColumn(name="sub_id")
+	private List<Material> materials=new ArrayList<>();
 	
-	public Subject() {
-		super();
-	}
 
-	public Subject(String subid, String name, String department, int semister) {
-		super();
-		this.subid = subid;
-		this.name = name;
-		this.department = department;
-		this.semister = semister;
-	}
-
-	public String getSubid() {
-		return subid;
-	}
-
-	public void setSubid(String subid) {
-		this.subid = subid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public int getSemister() {
-		return semister;
-	}
-
-	public void setSemister(int semister) {
-		this.semister = semister;
-	}
-	
-	
-	
 	
 
 }
