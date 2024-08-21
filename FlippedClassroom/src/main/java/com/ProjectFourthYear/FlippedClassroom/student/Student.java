@@ -8,6 +8,9 @@ import com.ProjectFourthYear.FlippedClassroom.subjects.Subject;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
 // import jakarta.validation.constraints.Size;
@@ -38,7 +41,14 @@ public class Student {
 	private LocalDate birthdate;
 	private String password;
 	
-	@OneToMany
+	// @OneToMany
+	@ManyToMany
+	@JoinTable(
+		name = "student_subjects",
+		
+		joinColumns=@JoinColumn(name="student_sid"),
+		inverseJoinColumns=@JoinColumn(name="subjects_subid")
+	)
 	private List<Subject> subjects=new ArrayList<>();
 	
 	
