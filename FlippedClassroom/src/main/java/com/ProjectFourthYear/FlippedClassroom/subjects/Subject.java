@@ -27,16 +27,17 @@ public class Subject {
 	@Id
 	private String subid;
 	private String name;
+	
 	private String department;
 	private int semester;
 	// private String tid;
-	@ManyToOne
-	@JoinColumn(name="tid")
-	private Teacher teacher;
+	// @ManyToOne
+	// @JoinColumn(name="tid")
+	// private Teacher teacher;
 
-	@ManyToOne
-	@JoinColumn(name="sid")
-	private Student student;
+	// @ManyToOne
+	// @JoinColumn(name="sid")
+	// private Student student;
 
 	@OneToMany
 	@JoinColumn(name="sub_id")
