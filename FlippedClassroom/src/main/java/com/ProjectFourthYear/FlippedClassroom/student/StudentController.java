@@ -35,7 +35,7 @@ public class StudentController {
 
     @GetMapping("/{studentId}/subjects")
     public List<Subject_Student_DTO> getSubjects(@PathVariable String studentId) {
-        return studentService.getSubjectsByStudentId(studentId);
+        return studentService.getSubjectsAndTeacherByStudentId(studentId);
     }
 
     @PostMapping
