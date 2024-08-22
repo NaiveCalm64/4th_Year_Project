@@ -44,8 +44,10 @@ public class TeacherService {
         
         return results.stream()
                 .map(row -> new Subject_Teacher_DTO(
-                        ((String) row[0]),              // teacher name
-                        (String) row[1]                 // subject name
+                        ((String) row[0]),              // subject id
+                        (String) row[1],                // subject name
+                        (String) row[2],                //department
+                        (int) row[3]                 // semester
                 ))
                 .collect(Collectors.toList());
         // return subjectRepository.findSubjectsByStudentId(studentId);
