@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { useAuth } from './security/AuthContext'
 
-export default function AdminLoginComponent() {
+export default function LoginComponent() {
 
     const [username, setUsername] = useState('')
 
@@ -24,7 +24,7 @@ export default function AdminLoginComponent() {
 
     async function handleSubmit() {
         if(await authContext.login(username, password)){
-            navigate(`/admin`)
+            navigate(`/welcome/${username}`)
         } else {
             setShowErrorMessage(true)
         }
