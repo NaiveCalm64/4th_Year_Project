@@ -1,8 +1,9 @@
 import HeaderComponent from "./HeaderComponent"
-import { useState } from 'react'
-import {useNavigate} from 'react-router-dom'
-import { useAuth } from './security/AuthContext'
-
+import { useState } from "react"
+import { retrieveAllSubjectsForStudentIdApi } from "./api/StudentApiService"
+import { useEffect } from "react"
+import { AuthContext, useAuth } from './security/AuthContext'
+import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
 
 export default function StudentHomeComponent() {
 
