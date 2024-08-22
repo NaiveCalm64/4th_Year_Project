@@ -6,19 +6,18 @@ import java.util.ArrayList;
 
 import com.ProjectFourthYear.FlippedClassroom.subjects.Subject;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Email;
-// import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
 
 @Data
 @AllArgsConstructor
@@ -26,35 +25,29 @@ import lombok.ToString;
 @ToString
 @Entity
 public class Student {
-	
-	@Id
-	private String sid;
-	private String name;
-	private String department;
-	private int year;
-	private int semester;
-	
-	@Email(message = "Invalid email")
-	private String email;
-	
-	private Long phone_number;
-	private LocalDate birthdate;
-	private String password;
-	
-	// @OneToMany
-	@ManyToMany
-	@JoinTable(
-		name = "student_subjects",
-		
-		joinColumns=@JoinColumn(name="student_sid"),
-		inverseJoinColumns=@JoinColumn(name="subjects_subid")
-	)
-	private List<Subject> subjects=new ArrayList<>();
-	
-	
-		
-	
-	
-	
-
+    
+    @Id
+    private String sid;
+    private String name;
+    private String department;
+    private int year;
+    private int semester;
+    
+    @Email(message = "Invalid email")
+    private String email;
+    
+    private Long phone_number;
+    private LocalDate birthdate;
+    private String password;
+    
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(
+        name = "student_subjects",
+        joinColumns = @JoinColumn(name = "student_sid", referencedColumnName = "sid"),
+        inverseJoinColumns = {
+            @JoinColumn(name = "subjects_subid", referencedColumnName = "subid"),
+            @JoinColumn(name = "department", referencedColumnName = "department")
+        }
+    )
+    private List<Subject> subjects = new ArrayList<>();
 }
