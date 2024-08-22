@@ -11,7 +11,8 @@ import lombok.ToString;
 @ToString
 
 public class Subject_Student_DTO {
-    private String student_name;
+    private String student_id;
     private String subject_name;
+    private String teacher_name;
 }
 

@@ -1,4 +1,8 @@
 import HeaderComponent from "./HeaderComponent"
+import { useState } from 'react'
+import {useNavigate} from 'react-router-dom'
+import { useAuth } from './security/AuthContext'
+
 
 export default function StudentHomeComponent() {
 

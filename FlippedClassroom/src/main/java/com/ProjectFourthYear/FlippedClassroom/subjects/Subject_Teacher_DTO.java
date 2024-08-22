@@ -12,6 +12,9 @@ import lombok.ToString;
 
 public class Subject_Teacher_DTO{
 
-    private String teacher_name;
+    private String subject_id;
     private String subject_name;
+
+    private String department;
+    private int semester;
 }

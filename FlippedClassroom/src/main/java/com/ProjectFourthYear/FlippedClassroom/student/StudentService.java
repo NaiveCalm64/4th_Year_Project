@@ -3,8 +3,8 @@ package com.ProjectFourthYear.FlippedClassroom.student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ProjectFourthYear.FlippedClassroom.subjects.Subject;
-import com.ProjectFourthYear.FlippedClassroom.subjects.SubjectDTO;
+// import com.ProjectFourthYear.FlippedClassroom.subjects.Subject;
+// import com.ProjectFourthYear.FlippedClassroom.subjects.SubjectDTO;
 import com.ProjectFourthYear.FlippedClassroom.subjects.SubjectRepository;
 import com.ProjectFourthYear.FlippedClassroom.subjects.Subject_Student_DTO;
 
@@ -25,13 +25,14 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public List<Subject_Student_DTO> getSubjectsByStudentId(String studentId) {
-        List<Object[]> results = subjectRepository.findSubjectsByStudentId(studentId);
+    public List<Subject_Student_DTO> getSubjectsAndTeacherByStudentId(String studentId) {
+        List<Object[]> results = subjectRepository.findSubjectsAndTeacherByStudentId(studentId);
         
         return results.stream()
                 .map(row -> new Subject_Student_DTO(
                         ((String) row[0]),              // student ID
-                        (String) row[1]                 // subject id
+                        (String) row[1]  ,              // Subject Name
+                        (String) row[2]               // Teacher Name
                 ))
                 .collect(Collectors.toList());
         // return subjectRepository.findSubjectsByStudentId(studentId);

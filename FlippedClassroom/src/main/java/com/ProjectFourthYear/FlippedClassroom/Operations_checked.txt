@@ -1,16 +1,11 @@
 REGISTER SUBJECTS:  http://127.0.0.1:8080/admin/register/subjects
 
 {
-    "subid":"PEC9000",
-    "name":"CYBER",
-    "department":"CSE",
-    "semester":7
-}
-
-{
-    "subid":"PEC1234",
+    "subject_id":{
+        "subid":"PCC601",
+        "department":"IT"
+    },
     "name":"CD",
-    "department":"CSE",
     "semester":7
 }
 
@@ -18,47 +13,47 @@ REGISTER SUBJECTS:  http://127.0.0.1:8080/admin/register/subjects
 REGISTER TEACHER: http://127.0.0.1:8080/admin/register/teachers
 
 {
-    "tid":"T011",
-    "name":"DC",
+    "tid":"T678",
+    "name":"KB",
     "email":"dc@gmail.com",
+    "department":"CSE",
     "phone_number":1234567890,
     "password":"hello",
-    "subjects":[
+    "subjects": [
         {
-            "subid":"PEC1234"
-        },
-        {
-            "subid":"PEC9000"
+            "subject_id": {
+                "subid": "PEC1234",
+                "department": "IT"
+            }
+
         }
     ]
 
 }
-
 REGISTER STUDENTS:  http://127.0.0.1:8080/admin/register/students
 
 {
-    "sid":"22011",
-    "name":"AGNIBHA",
-    "department":"CSE",
-    "year":4,
-    "semester":7,
-    "email":"hello@gmail.com",
-    "phone_number":9874697612,
-    "birthdate":"1990-11-11",
-    "password":"hello",
-     "subjects":[
+    "sid": "S12345",
+    "name": "John Doe",
+    "department": "IT",
+    "year": 4,
+    "semester": 8,
+    "email": "johndoe@example.com",
+    "phone_number": 9876543210,
+    "birthdate": "2000-01-01",
+    "password": "securePassword123",
+    "subjects": [
         {
-    "subid":"PEC1234"
-    },
-    {
-    "subid":"PEC9000"
-    }
-
+            "subject_id": {
+                "subid": "PCC601",
+                "department": "IT"
+            }
+        }
     ]
 }
 
 
-REGISTER MATERIALS:  http://127.0.0.1:8080/teachers/PEC9000/materials
+REGISTER MATERIALS:  http://127.0.0.1:8080/teachers/PEC9000/materials                 //not yet checked on the updated code
 
 {
     "material_name":"hello",
