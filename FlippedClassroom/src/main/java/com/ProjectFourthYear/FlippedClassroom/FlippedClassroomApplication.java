@@ -10,4 +10,15 @@ public class FlippedClassroomApplication {
 		SpringApplication.run(FlippedClassroomApplication.class, args);
 	}
 
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+				.allowedMethods("*")
+				.allowedOrigins("http://localhost:3000");
+			}
+		};
+	}
+
 }
