@@ -4,7 +4,7 @@ import { AuthContext, useAuth } from './security/AuthContext'
 
 export default function LoginComponent() {
 
-    const [username, setUsername] = useState('')
+    const [username, setUsername] = useState('Buju')
 
     const [password, setPassword] = useState('')
 
@@ -26,12 +26,12 @@ export default function LoginComponent() {
         setPassword(event.target.value)
     }
 
-    function handleSubmit() {
+    async function handleSubmit() {
 
-            if(authContext.login(username, password)) {
+            if(await authContext.login(username, password)) {
                 setShowSuccessMessage(true)
                 setShowErrorMessage(false)
-                navigate(`/teacher/${username}`)
+                navigate(`/welcome/${username}`)
             }
             else {
                 setShowSuccessMessage(false)

@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
+import { AuthContext, useAuth } from './security/AuthContext'
 
-export default function StudentLoginComponent() {
+export default function LoginComponent() {
 
     const [username, setUsername] = useState('')
 
@@ -12,6 +13,8 @@ export default function StudentLoginComponent() {
     const [showErrorMessage, setShowErrorMessage] = useState(false)
 
     const navigate = useNavigate()
+
+    const authContext = useAuth()
 
     function handleUsernameChange(event) {
 
@@ -25,17 +28,16 @@ export default function StudentLoginComponent() {
 
     function handleSubmit() {
 
-        if(username==="Buju" && password==="abc123") {
-            setShowSuccessMessage(true)
-            setShowErrorMessage(false)
-            navigate('/student')
-        }
-        else {
-            setShowSuccessMessage(false)
-            setShowErrorMessage(true)
-        }
+            if(authContext.login(username, password)) {
+                setShowSuccessMessage(true)
+                setShowErrorMessage(false)
+                navigate(`/student/${username}`)
+            }
+            else {
+                setShowSuccessMessage(false)
+                setShowErrorMessage(true)
+            }
     }
-
 
     function SuccessMessageComponent() {
 
@@ -53,20 +55,20 @@ export default function StudentLoginComponent() {
         return null
     }
 
-    return (
+    return(
+        <div className="Login">
 
-        <div className="Student-Login">
-            Student Login Component
+            Login Component
+            <SuccessMessageComponent></SuccessMessageComponent>
+            <ErrorMessageComponent></ErrorMessageComponent>
             <div className="loginForm">
                 <div>
                     <h1>Login Mofo</h1>
-                    <SuccessMessageComponent></SuccessMessageComponent>
-                    <ErrorMessageComponent></ErrorMessageComponent>
-                    <label>Username: </label>
+                    <label>Username:</label>
                     <input type="text" name="username" value={username} onChange={handleUsernameChange}></input>
                 </div>
                 <div>
-                    <label>Password: </label>
+                    <label>Password:</label>
                     <input type="password" name="password" value={password} onChange={handlePasswordChange}></input>
                 </div>
                 <div>

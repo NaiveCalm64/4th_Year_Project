@@ -1,3 +1,5 @@
+import HeaderComponent from "./HeaderComponent"
+
 export default function StudentHomeComponent() {
 
     const subjects = [
@@ -8,6 +10,7 @@ export default function StudentHomeComponent() {
 
     return(
         <div className="container">
+            <HeaderComponent></HeaderComponent>
             <h3>Name: </h3>
             <div></div>
             <table className='table'>
