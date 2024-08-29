@@ -1,63 +1,40 @@
 package com.ProjectFourthYear.FlippedClassroom.subjects;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import java.util.List;
 
+import com.ProjectFourthYear.FlippedClassroom.teacher.Material;
+
+import java.util.ArrayList;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumns;
+import jakarta.persistence.JoinColumn;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Entity
 public class Subject {
-	
-	@Id
-	private String subid;
-	private String name;
-	private String department;
-	private int semister;
-	
-	public Subject() {
-		super();
-	}
 
-	public Subject(String subid, String name, String department, int semister) {
-		super();
-		this.subid = subid;
-		this.name = name;
-		this.department = department;
-		this.semister = semister;
-	}
+    @EmbeddedId
+    private Subject_ID subject_id;
 
-	public String getSubid() {
-		return subid;
-	}
+    private String name;
+    private int semester;
 
-	public void setSubid(String subid) {
-		this.subid = subid;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
-	public int getSemister() {
-		return semister;
-	}
-
-	public void setSemister(int semister) {
-		this.semister = semister;
-	}
-	
-	
-	
-	
-
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumns({
+        @JoinColumn(name = "subject_id", referencedColumnName = "subid"),
+        @JoinColumn(name = "department", referencedColumnName = "department")
+    })
+    private List<Material> materials = new ArrayList<>();
 }
