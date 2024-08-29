@@ -42,6 +42,10 @@ public class TeacherController {
     public List<Subject_Teacher_DTO> getSubjects(@PathVariable String teacherId) {
         return teacherService.getSubjectsByTeacherId(teacherId);
     }
+    @GetMapping("/{department}/{subid}/materials")
+    public List<MaterialDTO> getMaterials(@PathVariable String department,@PathVariable String subid) {
+        return teacherService.getMaterials(department,subid);
+    }
 
 
     @PostMapping

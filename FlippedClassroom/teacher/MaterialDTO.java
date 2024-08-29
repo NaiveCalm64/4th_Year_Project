@@ -15,8 +15,8 @@ public class MaterialDTO {
     // private String material_id;
     // private String Subject_id
     private String material_name;
-    private int material_size;
+    // private int material_size;
     private String material_path;
     private LocalDateTime upload_time;
-    private String subjectId;
+    // private String subjectId;
 }

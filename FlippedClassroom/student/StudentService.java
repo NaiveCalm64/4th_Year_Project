@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service;
 import com.ProjectFourthYear.FlippedClassroom.subjects.SubjectRepository;
 import com.ProjectFourthYear.FlippedClassroom.subjects.Subject_Student_DTO;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -27,16 +31,28 @@ public class StudentService {
 
     public List<Subject_Student_DTO> getSubjectsAndTeacherByStudentId(String studentId) {
         List<Object[]> results = subjectRepository.findSubjectsAndTeacherByStudentId(studentId);
-        
-        return results.stream()
-                .map(row -> new Subject_Student_DTO(
-                        ((String) row[0]),              // student ID
-                        (String) row[1]  ,              // Subject Name
-                        (String) row[2]               // Teacher Name
-                ))
-                .collect(Collectors.toList());
-        // return subjectRepository.findSubjectsByStudentId(studentId);
+        List<Subject_Student_DTO> subjectDetailsList = new ArrayList<>();
+    
+        // Iterate over the results
+        Iterator<Object[]> iterator = results.iterator();
+        while (iterator.hasNext()) {
+            Object[] row = iterator.next();
+            
+            // Create DTO and populate fields
+            Subject_Student_DTO dto = new Subject_Student_DTO(
+                (String) row[0], // subject ID
+                (String) row[1], // subject name
+                (String) row[2]  // teacher name
+            );
+            
+            // Add DTO to the list
+            subjectDetailsList.add(dto);
+        }
+    
+        return subjectDetailsList;
     }
+    
+
 
     public Optional<Student> getStudentById(String sid) {
         return studentRepository.findById(sid);

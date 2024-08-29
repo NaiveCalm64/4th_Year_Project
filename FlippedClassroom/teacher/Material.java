@@ -3,6 +3,7 @@ package com.ProjectFourthYear.FlippedClassroom.teacher;
 import java.time.LocalDateTime;
 
 import com.ProjectFourthYear.FlippedClassroom.subjects.Subject;
+import com.ProjectFourthYear.FlippedClassroom.subjects.Subject_ID;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -31,12 +32,13 @@ public class Material {
     private int material_size;
     private String material_path;
     private LocalDateTime upload_time;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumns({
-        @JoinColumn(name = "subject_id", referencedColumnName = "subid"),
-        @JoinColumn(name = "department", referencedColumnName = "department")
-    })
-    private Subject Subject;
+    private Subject_ID subject_ID;
+    // @ManyToOne(cascade = CascadeType.PERSIST)
+    // @JoinColumns({
+    //     @JoinColumn(name = "subject_id", referencedColumnName = "subid"),
+    //     @JoinColumn(name = "department", referencedColumnName = "department")
+    // })
+    // private Subject Subject;
     
     // private String sub_id;
 

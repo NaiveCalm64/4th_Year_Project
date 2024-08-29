@@ -1,5 +1,6 @@
 package com.ProjectFourthYear.FlippedClassroom.teacher;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -22,6 +23,9 @@ public class TeacherService {
 
     @Autowired 
     private SubjectRepository subjectRepository;
+
+    // @Autowired
+    // priv
 
     public List<Teacher> getAllTeachers() {
         return teacherRepository.findAll();
@@ -48,6 +52,20 @@ public class TeacherService {
                         (String) row[1],                // subject name
                         (String) row[2],                //department
                         (int) row[3]                 // semester
+                ))
+                .collect(Collectors.toList());
+        // return subjectRepository.findSubjectsByStudentId(studentId);
+    }
+
+    public List<MaterialDTO> getMaterials(String department,String subid) {
+        List<Object[]> results = materialRepository.findmaterials(department,subid);
+        
+        return results.stream()
+                .map(row -> new MaterialDTO(
+                        (String) row[0],              // subject id
+                        (String) row[1],
+                        (LocalDateTime) row[2]               // subject name
+                    
                 ))
                 .collect(Collectors.toList());
         // return subjectRepository.findSubjectsByStudentId(studentId);
