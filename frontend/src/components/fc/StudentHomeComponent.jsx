@@ -1,7 +1,6 @@
 import HeaderComponent from "./HeaderComponent"
 import { useState } from "react"
 import { retrieveAllSubjectsForStudentIdApi } from "./api/StudentApiService"
-import { retrieveAllMaterialsForStudentIdApi } from "./api/StudentApiService"
 import { useEffect } from "react"
 import { AuthContext, useAuth } from './security/AuthContext'
 import { BrowserRouter, Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
@@ -37,19 +36,6 @@ export default function StudentHomeComponent() {
         .catch(error => console.log(error))
     }
 
-    function gotoMaterialsPage(subject_id,department) {
-
-        // Fetch materials for the given subject_id and department
-        retrieveAllMaterialsForStudentIdApi(subject_id, department)
-        .then(response => {
-            console.log(response)
-            // Assuming you want to navigate to a new route with the materials data
-            navigate(`/student/${department}/${subject_id}/materials`, { state: { materials: response.data } })
-        })
-        .catch(error => console.log(error))
-
-}
-
     return(
         <div className="container">
             <HeaderComponent></HeaderComponent>
@@ -73,7 +59,7 @@ export default function StudentHomeComponent() {
                                     <td>{subject.subject_id}</td>
                                     <td>{subject.subject_name}</td>
                                     <td>{subject.teacher_name}</td>
-                                    <td><button type="button" className="btn btn-success" onClick={()=>gotoMaterialsPage(subject.subject_id,subject.department)}>Enter</button></td>
+                                    <td><button>Enter</button></td>
                                 </tr>
                         )
                     }

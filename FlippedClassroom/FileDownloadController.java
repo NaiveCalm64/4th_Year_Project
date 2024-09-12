@@ -21,7 +21,7 @@ import java.nio.file.Paths;
 public class FileDownloadController {
 
     // Specify the directory where files should be saved before downloading
-    private static final String DOWNLOAD_DIRECTORY = "C:/Users/PROJ - 11/Desktop/PROJ-09/4th_Year_Project/FlippedClassroom/src/main/java/com/Downloads/";
+    private static final String DOWNLOAD_DIRECTORY = "";
 
     @GetMapping("/download")
     public ResponseEntity<Resource> downloadFile(@RequestParam String filePath) throws IOException {

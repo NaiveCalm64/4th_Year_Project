@@ -10,5 +10,3 @@ import {apiClient} from './ApiClient'
 
 
 export const retrieveAllSubjectsForTeacherIdApi = (username) => apiClient.get(`/teachers/${username}/subjects`)
-
-export const retrieveAllMaterialsForTeacherIdApi = (department,subid) => apiClient.get(`/teachers/${department}/${subid}/materials`)

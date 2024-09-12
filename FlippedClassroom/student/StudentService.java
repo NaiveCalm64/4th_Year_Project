@@ -7,10 +7,7 @@ import org.springframework.stereotype.Service;
 // import com.ProjectFourthYear.FlippedClassroom.subjects.SubjectDTO;
 import com.ProjectFourthYear.FlippedClassroom.subjects.SubjectRepository;
 import com.ProjectFourthYear.FlippedClassroom.subjects.Subject_Student_DTO;
-import com.ProjectFourthYear.FlippedClassroom.teacher.MaterialDTO;
-import com.ProjectFourthYear.FlippedClassroom.teacher.MaterialRepository;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -27,9 +24,6 @@ public class StudentService {
 
     @Autowired
     private SubjectRepository subjectRepository;
-    
-    @Autowired
-    private MaterialRepository materialRepository;
 
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
@@ -48,8 +42,7 @@ public class StudentService {
             Subject_Student_DTO dto = new Subject_Student_DTO(
                 (String) row[0], // subject ID
                 (String) row[1], // subject name
-                (String) row[2],  // teacher name
-                (String) row[3]
+                (String) row[2]  // teacher name
             );
             
             // Add DTO to the list
@@ -59,19 +52,7 @@ public class StudentService {
         return subjectDetailsList;
     }
     
-    public List<MaterialDTO> getMaterials(String department,String subid) {
-        List<Object[]> results = materialRepository.findmaterials(department,subid);
-        
-        return results.stream()
-                .map(row -> new MaterialDTO(
-                        (String) row[0],              // subject id
-                        (String) row[1],
-                        (LocalDateTime) row[2]               // subject name
-                    
-                ))
-                .collect(Collectors.toList());
-        // return subjectRepository.findSubjectsByStudentId(studentId);
-    }
+
 
     public Optional<Student> getStudentById(String sid) {
         return studentRepository.findById(sid);

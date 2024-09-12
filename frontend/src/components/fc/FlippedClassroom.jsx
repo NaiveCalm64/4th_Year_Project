@@ -9,8 +9,6 @@ import TeacherHomeComponent from './TeacherHomeComponent'
 import AdminHomeComponent from './AdminHomeComponent'
 import AuthProvider, { useAuth } from './security/AuthContext'
 import LogoutComponent from './LogoutComponent'
-import TeacherMaterialsComponent from './TeacherMaterialsComponent'
-import StudentMaterialsComponent from './StudentMaterialsComponent'
 
 export default function FlippedClassroom() {
 
@@ -35,8 +33,6 @@ export default function FlippedClassroom() {
                     <Route path='/admin-login' element={<AdminLoginComponent></AdminLoginComponent>}></Route>
                     <Route path='/student/:username' element={<AuthenticatedRoute><StudentHomeComponent></StudentHomeComponent></AuthenticatedRoute>}></Route>
                     <Route path='/teacher/:username' element={<AuthenticatedRoute><TeacherHomeComponent></TeacherHomeComponent></AuthenticatedRoute>}></Route>
-                    <Route path='/teacher/:subject_id/:department/materials' element={<AuthenticatedRoute><TeacherMaterialsComponent></TeacherMaterialsComponent></AuthenticatedRoute>}></Route>
-                    <Route path='/student/:subject_id/:department/materials' element={<AuthenticatedRoute><StudentMaterialsComponent></StudentMaterialsComponent></AuthenticatedRoute>}></Route>
                     <Route path='/admin' element={<AuthenticatedRoute><AdminHomeComponent></AdminHomeComponent></AuthenticatedRoute>}></Route>
                     <Route path='/logout' element={<AuthenticatedRoute><LogoutComponent></LogoutComponent></AuthenticatedRoute>}></Route>
                 </Routes>

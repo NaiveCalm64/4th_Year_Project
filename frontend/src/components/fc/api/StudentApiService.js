@@ -15,5 +15,3 @@ export const executeBasicAuthenticationService = (token) => apiClient.get(`/basi
 })
 
 export const retrieveAllSubjectsForStudentIdApi = (username) => apiClient.get(`/students/${username}/subjects`)
-
-export const retrieveAllMaterialsForStudentIdApi = (department,subid) => apiClient.get(`/students/${department}/${subid}/materials`)
