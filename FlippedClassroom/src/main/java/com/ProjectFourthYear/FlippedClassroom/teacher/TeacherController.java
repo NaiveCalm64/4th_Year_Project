@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+// import com.ProjectFourthYear.FlippedClassroom.subjects.Subject_Student_DTO;
+import com.ProjectFourthYear.FlippedClassroom.subjects.Subject_Teacher_DTO;
+
 @RestController
 @RequestMapping("/teachers")
 public class TeacherController {
@@ -35,11 +38,27 @@ public class TeacherController {
             return ResponseEntity.notFound().build();
         }
     }
+    @GetMapping("/{teacherId}/subjects")
+    public List<Subject_Teacher_DTO> getSubjects(@PathVariable String teacherId) {
+        return teacherService.getSubjectsByTeacherId(teacherId);
+    }
+    @GetMapping("/{department}/{subid}/materials")
+    public List<MaterialDTO> getMaterials(@PathVariable String department,@PathVariable String subid) {
+        return teacherService.getMaterials(department,subid);
+    }
+
 
     @PostMapping
     public Teacher addTeacher(@RequestBody Teacher teacher) {
         return teacherService.addTeacher(teacher);
     }
+
+    @PostMapping("/{sub_id}/materials")
+    public Material addMaterials(@PathVariable String sub_id, @RequestBody Material material) {
+        Material newMaterial=teacherService.addMaterials(sub_id,material);
+        return newMaterial;
+    }
+    
 
     @PutMapping("/{tid}")
     public ResponseEntity<Teacher> updateTeacher(@PathVariable String tid, @RequestBody Teacher teacherDetails) {

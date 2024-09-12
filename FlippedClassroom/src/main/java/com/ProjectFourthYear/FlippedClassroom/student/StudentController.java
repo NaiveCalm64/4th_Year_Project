@@ -4,7 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.ProjectFourthYear.FlippedClassroom.subjects.Subject;
+// import com.ProjectFourthYear.FlippedClassroom.subjects.SubjectDTO;
+import com.ProjectFourthYear.FlippedClassroom.subjects.Subject_Student_DTO;
+import com.ProjectFourthYear.FlippedClassroom.teacher.MaterialDTO;
+
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -29,6 +35,15 @@ public class StudentController {
         }
     }
 
+    @GetMapping("/{studentId}/subjects")
+    public List<Subject_Student_DTO> getSubjects(@PathVariable String studentId) {
+        return studentService.getSubjectsAndTeacherByStudentId(studentId);
+    }
+    @GetMapping("/{department}/{subid}/materials")
+    public List<MaterialDTO> getMaterials(@PathVariable String department,@PathVariable String subid) {
+        return studentService.getMaterials(department,subid);
+    }
+
     @PostMapping
     public Student addStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
@@ -50,4 +65,3 @@ public class StudentController {
         return ResponseEntity.noContent().build();
     }
 }
-
