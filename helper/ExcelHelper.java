@@ -1,4 +1,5 @@
-package com.ProjectFourthYear.FlippedClassroom.helper;
+
+package com.ProjectFourthYear.FlippedClassroom.Helper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+// import org.apache.poi.ss.usermodel.Sheet.Iterator();
+import java.time.ZoneId;
+
+// import org.apache.poi.hpsf.Date;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -17,9 +22,8 @@ import com.ProjectFourthYear.FlippedClassroom.student.Student;
 
 public class ExcelHelper {
     public static String TYPE = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-    static String[] HEADERs = { "sid", "name", "department", "year", "semester", "email", "phone_number", "birthdate",
-            "password" };
-    static String SHEET = "Students";
+    static String[] HEADERs = { "sid","birthdate","department","email", "name", "password",  "phone_number", "semester","year" };
+    static String SHEET = "Sheet1";
 
     public static boolean hasExcelFormat(MultipartFile file) {
 
@@ -61,43 +65,44 @@ public class ExcelHelper {
                         case 0:
                             student.setSid(currentCell.getStringCellValue());
                             break;
-
-                        case 4:
-                            student.setName(currentCell.getStringCellValue());
+                        
+                        case 1:
+                            LocalDate dateStr = currentCell.getDateCellValue().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                            // LocalDate birthdate = LocalDate.parse(dateStr); // Parse the string to LocalDate
+                            // java.util.Date dateValue = currentCell.getDateCellValue();
+                            student.setBirthdate(dateStr);
                             break;
 
                         case 2:
                             student.setDepartment(currentCell.getStringCellValue());
                             break;
 
-                        case 1:
-                             String dateStr = currentCell.getStringCellValue();
-        LocalDate birthdate = LocalDate.parse(dateStr); // Parse the string to LocalDate
-        student.setBirthdate(birthdate);
+                        case 3:
+                            student.setEmail(currentCell.getStringCellValue());
                             break;
 
-                        case 8:
-                            int Year = (int)currentCell.getNumericCellValue();
-                            student.setYear(Year);
+                        case 4:
+                            student.setName(currentCell.getStringCellValue());
                             break;
-                            
+                        
+                            case 5:
+                            long phoneNumber = (long)(currentCell.getNumericCellValue());
+                            student.setPhone_number(phoneNumber);
+                            break;
+
+                        case 6:
+                            student.setPassword(currentCell.getStringCellValue());
+                            break;
+    
                         case 7:
                             int Semester = (int)currentCell.getNumericCellValue();
                             student.setSemester(Semester);
                             break;
 
-                        case 3:
-                            student.setEmail (currentCell.getStringCellValue());
-                            break;
-
-                        case 5:
-                            student.setPassword(currentCell.getStringCellValue());
-                            break;
-
-                        case 6:
-                            long phoneNumber = (long)(currentCell.getNumericCellValue());
-                            student.setPhone_number(phoneNumber);
-                            break;
+                        case 8:
+                            int Year = (int)currentCell.getNumericCellValue();
+                            student.setYear(Year);
+                            break;                        
                             
                         default:
                             break;
