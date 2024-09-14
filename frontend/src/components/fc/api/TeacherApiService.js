@@ -1,4 +1,5 @@
 import {apiClient} from './ApiClient'
+import axios from 'axios';
 
 // export const retrieveHelloWorldBean = () => apiClient.get("hello-world-bean")
 
@@ -12,3 +13,11 @@ import {apiClient} from './ApiClient'
 export const retrieveAllSubjectsForTeacherIdApi = (username) => apiClient.get(`/teachers/${username}/subjects`)
 
 export const retrieveAllMaterialsForTeacherIdApi = (department,subid) => apiClient.get(`/teachers/${department}/${subid}/materials`)
+
+export const uploadNewMaterialApi = (formData) => {
+    return axios.post(`http://localhost:8080/teachers/upload-material`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data"
+        }
+    });
+};
